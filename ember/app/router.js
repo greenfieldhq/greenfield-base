@@ -18,6 +18,7 @@ Router.map(function() {
   });
   this.route('top_secret');
   this.route('uploads');
+  this.route('documents');
 });
 
 export default Router;

@@ -25,4 +25,9 @@ app.import({development:'vendor/pretender/pretender.js'});
 
 app.import('vendor/jquery.cookie/jquery.cookie.js');
 app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
+app.import('vendor/redactor/redactor.js')
 //app.import('vendor/torii/dist/torii.amd.js');
+app.import('vendor/bootstrap/dist/css/bootstrap.css');
+app.import('vendor/bootstrap/dist/css/bootstrap-theme.css');
+app.import('vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
+app.import('vendor/redactor/redactor.css');
