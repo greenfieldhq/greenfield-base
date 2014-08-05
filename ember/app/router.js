@@ -18,7 +18,10 @@ Router.map(function() {
   });
   this.route('top_secret');
   this.route('uploads');
-  this.route('documents');
+  this.resource('documents', function() {
+    this.route('show', { path: ':user_id' });
+    this.route('new');
+  });
 });
 
 export default Router;
