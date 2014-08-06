@@ -64,8 +64,8 @@ export default Ember.Object.extend({
     } else {
       // Set auth cookie if rememberMe is true
       if (this.get('rememberMe')) {
-        Ember.$.cookie('access_token', this.get('apiKey.accessToken'), { expires: 30});
-        Ember.$.cookie('auth_user', this.get('apiKey.user.id'), { expires: 30});
+        Ember.$.cookie('access_token', this.get('apiKey.accessToken'), { expires: 30, path: '/'});
+        Ember.$.cookie('auth_user', this.get('apiKey.user.id'), { expires: 30, path: '/'});
       }
     }
   }.observes('apiKey')

@@ -3,6 +3,6 @@ import AuthenticatedRoute from '../authenticated';
 
 export default AuthenticatedRoute.extend({
   model: function() {
-    return this.store.createRecord('document');
+    return Ember.Object.create();
   }
 });

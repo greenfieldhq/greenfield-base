@@ -13,16 +13,19 @@ var RedactorEditorComponent = Ember.Component.extend({
   },
   _updateElementValue: Ember.observer(function() {
     var $el, value;
-    value = Ember.get(this, "content.body");
+    value = Ember.get(this, "body");
     $el = this.$().context;
+    if (typeof value == 'undefined') {
+      return $el.innerHTML = '';
+    }
     if ($el && value !== $el.innerHTML) {
       return $el.innerHTML = value;
     }
-  }, "content.body"),
+  }, "body"),
   _elementValueDidChange: function() {
     var $el;
     $el = this.$().context;
-    return Ember.set(this, "content.body", $el.innerHTML);
+    return Ember.set(this, "body", $el.innerHTML);
   },
   didInsertElement: function() {
     this.$().redactor({
