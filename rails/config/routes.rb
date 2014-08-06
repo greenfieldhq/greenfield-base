@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :documents
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -59,6 +58,7 @@ Rails.application.routes.draw do
     resources :cars
     resources :users, except: [:new, :edit, :destroy]
     resources :api_keys
+    resources :documents
     post 'session' => 'session#create'
   end
 

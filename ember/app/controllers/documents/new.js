@@ -5,7 +5,7 @@ export default Ember.ObjectController.extend({
   actions: {
     save: function() {
       var doc = this.get('model');
-      debugger;
+      doc.save();
     }
   }
 });

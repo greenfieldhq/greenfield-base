@@ -19,7 +19,7 @@ Router.map(function() {
   this.route('top_secret');
   this.route('uploads');
   this.resource('documents', function() {
-    this.route('show', { path: ':user_id' });
+    this.route('show', { path: ':document_id' });
     this.route('new');
   });
 });

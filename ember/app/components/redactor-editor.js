@@ -18,7 +18,7 @@ var RedactorEditorComponent = Ember.Component.extend({
     if ($el && value !== $el.innerHTML) {
       return $el.innerHTML = value;
     }
-  }, "value"),
+  }, "content.body"),
   _elementValueDidChange: function() {
     var $el;
     $el = this.$().context;
