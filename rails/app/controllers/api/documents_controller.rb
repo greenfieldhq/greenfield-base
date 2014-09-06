@@ -15,7 +15,6 @@ class Api::DocumentsController < ApplicationController
   def create
     document = Document.new(document_params)
     document.user = current_user
-    byebug
     document.save!
 
     if document.new_record?

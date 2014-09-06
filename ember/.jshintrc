@@ -2,7 +2,7 @@
   "predef": {
     "document": true,
     "window": true,
-    "AskBeatriceENV": true,
+    "GreenfieldENV": true,
     "_": true,
     "google": true
   },
