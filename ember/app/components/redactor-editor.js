@@ -29,7 +29,7 @@ var RedactorEditorComponent = Ember.Component.extend({
   },
   didInsertElement: function() {
     this.$().redactor({
-      air: true
+      //air: true
     });
     this._updateElementValue();
   }
