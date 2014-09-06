@@ -1,20 +1,25 @@
-<h2>Login</h2>
-
 <form {{action "loginUser" on="submit"}} role="form">
-  <div class="form-group">
-    <label>Username or Email</label>
-    {{input type="text" value=username_or_email placeholder="Username or Email Address" class="username form-control"}}
+  <div {{bindAttr class=":controls errors.name:error :form-group"}}>
+    {{input type="text" value=email placeholder="Email Address" class="username form-control"}}
+    <small class="below">{{errors.email}}</small>
   </div>
 
-  <div class="form-group">
-    <label>Password</label>
+  <div {{bindAttr class=":controls errors.name:error :form-group"}}>
     {{input type="password" value=password placeholder="Password" class="password form-control"}}
+    <small class="below">{{errors.password}}</small>
   </div>
 
   <div class="form-group">
-    {{input type="checkbox" checked=remember_me class="remember-me"}}
-    <label>Remember Me?</label>
+    <button type="submit" class="login btn btn-primary">Sign In</button>
   </div>
 
-  <button type="submit" class="login btn btn-primary">Submit</button>
+  <div class="form-group">
+    {{link-to 'Register' 'users.new' classNames="btn btn-default"}}
+  </div>
+
+  <div class="form-group">
+    <center>
+      {{link-to 'Forgot Password' 'users.forgot_password'}}
+    </center>
+  </div>
 </form>

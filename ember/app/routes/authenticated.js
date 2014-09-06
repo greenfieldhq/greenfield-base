@@ -2,9 +2,15 @@ import Ember from 'ember';
 import App from '../app';
 
 export default Ember.Route.extend({
-  enter: function(transition) {
+  beforeModel: function(transition) {
+    var _self = this;
     if (!App.AuthManager.isAuthenticated()) {
-      this.redirectToLogin(transition);
+      App.AuthManager.auth().then(function() {
+        transition.retry();
+      }, function(reason) {
+        //transition.abort();
+        _self.redirectToLogin(transition); 
+      });
     }
   },
   // Redirect to the login page and store the current transition so we can
@@ -15,9 +21,12 @@ export default Ember.Route.extend({
     this.transitionTo('sessions.new');
   },
 
-  events: {
+  actions: {
     error: function(reason, transition) {
       this.redirectToLogin(transition);
+    },
+    loading: function() {
+      //alert('loading data...');
     }
   }
 });

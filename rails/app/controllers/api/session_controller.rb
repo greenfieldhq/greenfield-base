@@ -1,6 +1,6 @@
 class Api::SessionController < ApplicationController
   def create
-    user = User.where("username = ? OR email = ?", params[:username_or_email], params[:username_or_email]).first
+    user = User.where("email = ?", params[:email]).first
     if user && user.authenticate(params[:password])
       render json: user.session_api_key, status: 201
     else

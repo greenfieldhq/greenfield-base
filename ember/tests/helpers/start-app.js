@@ -2,6 +2,7 @@
 
 var Application = require('greenfield/app')['default'];
 var Router = require('greenfield/router')['default'];
+import Ember from 'ember';
 
 export default function startApp(attrs) {
   var App;

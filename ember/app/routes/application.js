@@ -5,9 +5,12 @@ import App from '../app';
 export default Ember.Route.extend({
   init: function() {
     this._super();
+
+    // Define Globals Here
     App.AuthManager = AuthManager.create({store: this.store});
   },
-  events: {
+
+  actions: {
     logout: function() {
       App.AuthManager.reset();
       this.transitionTo('sessions.new');

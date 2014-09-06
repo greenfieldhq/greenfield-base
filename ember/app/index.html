@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Greenfield</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width; initial-scale=1; user-scalable=no; minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     {{BASE_TAG}}
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/greenfield.css">
+    <link rel="stylesheet" href="assets/redactor/redactor.css">
+    </script>
+    
   </head>
   <body>
     <script>
@@ -19,6 +23,10 @@
     </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/greenfield.js"></script>
+    <script src="assets/javascript/underscore.js"></script>
+    <script src="assets/javascript/date.js"></script>
+    <script src="assets/javascript/jquery.timepicker.js"></script>
+    <script src="assets/redactor/redactor.min.js"></script>
     <script>
       window.Greenfield = require('greenfield/app')['default'].create(GreenfieldENV.APP);
     </script>

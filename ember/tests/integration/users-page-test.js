@@ -1,4 +1,6 @@
+/* global Pretender:true */
 import startApp from 'greenfield/tests/helpers/start-app';
+import Ember from 'ember';
 
 var App, server;
 
@@ -9,7 +11,7 @@ module('Integration - User Page', {
       {
         id: 1,
         name: 'Ryan Tremaine',
-        
+
       },
       {
         id: 2,
@@ -55,15 +57,15 @@ test('Should allow navigation to the users page from the landing page', function
 test('Should list all users', function() {
   login('rtremaine', 'rt');
   visit('/users').then(function() {
-    equal(find('a:contains("Ryan Tremaine")').length, 1);
-    equal(find('a:contains("Mike Munroe")').length, 1);
+    equal(find('a:contains("ryan@greenfieldhq.com")').length, 1);
+    equal(find('a:contains("mike@greenfieldhq.com")').length, 1);
   });
 });
 
 test('Should be able to navigate to a user page', function() {
   login('rtremaine', 'rt');
   visit('/users').then(function() {
-    click('a:contains("Ryan Tremaine")').then(function() {
+    click('a:contains("ryan@greenfieldhq.com")').then(function() {
       equal(find('h4').text(), 'Ryan Tremaine');
     });
   });
@@ -84,3 +86,4 @@ function login(username, password) {
     });
   });
 }
+

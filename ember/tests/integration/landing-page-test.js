@@ -1,4 +1,5 @@
 import startApp from 'greenfield/tests/helpers/start-app';
+import Ember from 'ember';
 
 var App;
 
