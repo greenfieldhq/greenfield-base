@@ -4,9 +4,9 @@ import Base from 'simple-auth/authorizers/base';
 var CustomAuthorizer = Base.extend({
   authorize: function(jqXHR, requestOptions) {
     var userToken = this.get('session.user_token');
-    var userEmail = this.get('session.user_email');
-    if (this.get('session.isAuthenticated') && !Ember.isEmpty(userToken) && !Ember.isEmpty(userEmail)) {
-      var authData = 'user_token="' + userToken + '", user_email="' + userEmail + '"';
+    var userId    = this.get('session.user_id');
+    if (this.get('session.isAuthenticated') && !Ember.isEmpty(userToken) && !Ember.isEmpty(userId)) {
+      var authData = 'user_token="' + userToken + '", user_id="' + userId + '"';
       jqXHR.setRequestHeader('Authorization', 'Token ' + authData);
     }
   }

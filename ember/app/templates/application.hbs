@@ -18,7 +18,7 @@
         <li>{{link-to 'Users' 'users'}}</li>
 
         {{#if session.isAuthenticated}}
-          <li><a href="#">{{session.user_email}}</a></li>
+          <li><a href="#">{{session.currentUser.email}}</a></li>
           <li><a href="#" {{ action 'invalidateSession' }}>Logout</a></li>
         {{else}}
           <li>{{link-to 'Register' 'users.new'}}</li>

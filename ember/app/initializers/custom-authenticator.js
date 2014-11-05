@@ -6,7 +6,7 @@ var CustomAuthenticator = Base.extend({
 
   restore: function(properties) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      if (!Ember.isEmpty(properties.user_token) && !Ember.isEmpty(properties.user_email)) {
+      if (!Ember.isEmpty(properties.user_token) && !Ember.isEmpty(properties.user_id)) {
         resolve(properties);
       } else {
         reject();

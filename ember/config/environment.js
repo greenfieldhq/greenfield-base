@@ -20,7 +20,8 @@ module.exports = function(environment) {
   };
 
   ENV['simple-auth'] = {
-    authorizer: 'authorizer:custom'
+    authorizer: 'authorizer:custom',
+    session:    'session:custom'
   };
 
   if (environment === 'development') {
