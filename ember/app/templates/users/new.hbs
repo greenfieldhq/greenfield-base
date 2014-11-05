@@ -1,33 +1,17 @@
 <form {{action "createUser" on="submit"}} role="form">
-  <div {{bindAttr class=":controls errors.name:error :form-group"}}>
+  <div class="controls form-group">
     {{input type="email" value=email placeholder="Email Address" class="form-control"}}
     <small class="below">{{errors.email}}</small>
   </div>
 
-  <div {{bindAttr class=":controls errors.password:error :form-group"}}>
+  <div class="controls form-group">
     {{input type="password" value=password placeholder="Password" class="form-control"}}
     <small class="below">{{errors.password}}</small>
   </div>
 
-  <div {{bindAttr class=":controls errors.password_confirmation:error :form-group"}}>
-    {{input type="password" value=password_confirmation placeholder="Confirm Password" class="form-control"}}
-    <small class="below">{{errors.password_confirmation}}</small>
-  </div>
-
-  <br/>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-1 col-sm-1 col-xs-2">
-        <center>
-          {{input type="checkbox" name="agree" checked=agree id="agree"}}
-        </center>
-      </div>
-      <div class="col-md-11 col-sm-10 col-xs-10">
-        <label for="agree">I have read and agree to the {{link-to 'Terms of Use' 'users.terms'}} and {{link-to 'Privacy Policy' 'users.privacy'}}</label>
-        <small class="below">{{errors.agree}}</small>
-      </div>
-    </div>
+  <div class="controls form-group">
+    {{input type="password" value=passwordConfirmation placeholder="Confirm Password" class="form-control"}}
+    <small class="below">{{errors.passwordConfirmation}}</small>
   </div>
 
   <div class="form-group">
@@ -36,7 +20,7 @@
 
   <div class="form-group">
     <center>
-      {{link-to 'Go Back' 'sessions.new' classNames='back-button'}}
+      {{link-to 'Go Back' 'login' classNames='back-button'}}
     </center>
   </div>
 

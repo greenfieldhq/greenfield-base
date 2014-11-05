@@ -1,11 +1,9 @@
 {
-  "predef": {
-    "document": true,
-    "window": true,
-    "GreenfieldENV": true,
-    "_": true,
-    "google": true
-  },
+  "predef": [
+    "document",
+    "window",
+    "-Promise"
+  ],
   "browser" : true,
   "boss" : true,
   "curly": true,
@@ -30,5 +28,5 @@
   "white": false,
   "eqnull": true,
   "esnext": true,
-  "unused": true
+  "unused": "vars"
 }

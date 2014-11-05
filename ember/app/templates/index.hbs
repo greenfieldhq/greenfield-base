@@ -1,1 +1,10 @@
-Index
+{{#if session.isAuthenticated}}
+  <h1>Welcome, {{session.user_email}}</h1>
+{{else}}
+  <h1>Welcome</h1>
+  <p>
+    {{link-to 'Register' 'users.new'}}
+    or
+    {{link-to 'Login' 'login'}}
+  </p>
+{{/if}}

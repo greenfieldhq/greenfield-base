@@ -1,13 +1,14 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var pickFiles = require('ember-cli/lib/broccoli/custom-static-compiler');
+var pickFiles = require('broccoli-static-compiler');
 
-// Exclude markers from fingerprinting as they are handled by google maps markers
-var app = new EmberApp({
-  fingerprint: {
-     exclude: ['images/markers']
-  }
+var app = new EmberApp();
+
+// Put the bootstrap fonts in the place that the bootstrap css expects to find them.
+var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
+  srcDir: '/',
+  destDir: '/fonts/bootstrap'
 });
 
 // Use `app.import` to add additional libraries to the generated
@@ -23,25 +24,6 @@ var app = new EmberApp({
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 
-app.import({development:'vendor/route-recognizer/dist/route-recognizer.js'});
-app.import({development:'vendor/FakeXMLHttpRequest/fake_xml_http_request.js'});
-app.import('vendor/jquery.cookie/jquery.cookie.js');
-app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
-app.import('vendor/ember-validations/index.js');
-app.import('vendor/ember-notify/dist/named-amd/main.js', {
-  exports: {
-    'ember-notify': ['default']
-  }
-});
-app.import('vendor/moment/moment.js', {
-  'moment': ['default']
-});
-app.import('vendor/modernizr/modernizr.js');
-
-app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
-app.import('vendor/bootstrap/dist/css/bootstrap-theme.min.css');
-app.import('vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
-app.import('vendor/ember-notify/dist/ember-notify.css');
-
-module.exports = app.toTree();
+module.exports = app.toTree(bootstrapFonts);

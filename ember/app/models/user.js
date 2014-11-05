@@ -1,9 +1,11 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  email:    DS.attr('string'),
-  phone: DS.attr('string'),
-  //cars: DS.hasMany('car', {embedded: 'always', async: true}),
-  errors: {}
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  email: DS.attr('string'),
+  fullName: function() {
+    return this.get('firstName') + ' ' + this.get('lastName');
+  }.property('firstName', 'lastName')
 });
 

@@ -1,39 +1,35 @@
 import Ember from 'ember';
-import Notify from 'ember-notify';
+import EmberValidations from 'ember-validations';
 
-export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
+export default Ember.ObjectController.extend(EmberValidations.Mixin, {
   actions: {
     resetPassword: function() {
-      // return if validations don't pass
-      if (!this.runValidations()) {
-        return;
-      }
+      var _this = this;
+      this.runValidations().then(function() {
+        var router = _this.get('target');
+        var data = _this.getProperties('password', 'password_confirmation');
 
-      var router = this.get('target');
-      var data = this.getProperties('password', 'password_confirmation');
-      var _self = this;
+        data['token'] = _this.get('content').get('token');
 
-      data['token'] = this.get('content').get('token');
-
-      /* jshint unused:false */
-      Ember.$.post('api/users/reset_password', { user: data }, function(results) {
-        var notify = Notify.alert(results.message, {
-          closeAfter: null // or set to null to disable auto-hiding
+        /* jshint unused:false */
+        Ember.$.post('api/users/reset_password', { user: data }, function(results) {
+          router.transitionTo('login');
+        }).fail(function(jqxhr, textStatus, error ) {
+          if (jqxhr.status === 422) {
+            var errs = JSON.parse(jqxhr.responseText);
+            _this.set('errors.password', errs.errors);
+          }
         });
-        //notify.send('close');
-        router.transitionTo('sessions.new');
-      }).fail(function(jqxhr, textStatus, error ) {
-        if (jqxhr.status === 422) {
-          var errs = JSON.parse(jqxhr.responseText);
-          _self.set('errors.password', errs.errors);
-        }
+      }).catch(function() {
+        // validation failed
+        return;
       });
     }
   },
   validations: {
     password: {
-      presence: {if: 'canValidate'},
-      confirmation: {confirmationProperty: 'password_confirmation'}
+      presence: {'if': 'canValidate'},
+      confirmation: {'if': 'canValidate', message: 'does not match password'}
     },
   }
 });

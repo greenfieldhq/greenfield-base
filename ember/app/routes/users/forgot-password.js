@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function() {
-    //return Ember.Object.create();
-    return this.store.createRecord('user');
+    return Ember.Object.create();
   }
 });

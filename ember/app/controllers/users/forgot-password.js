@@ -1,36 +1,33 @@
 import Ember from 'ember';
-import Notify from 'ember-notify';
+import EmberValidations from 'ember-validations';
 
-export default Ember.ObjectController.extend(Ember.Validations.Mixin, {
+export default Ember.ObjectController.extend(EmberValidations.Mixin, {
   actions: {
     forgotPassword: function() {
-      if (!this.runValidations()) {
-        return;
-      }
+      var _this = this;
+      this.runValidations().then(function() {
+        var router = _this.get('target');
+        var data = _this.getProperties('email');
+        var user = _this.get('model');
 
-      var router = this.get('target');
-      var data = this.getProperties('email');
-      var user = this.get('model');
-      var _self = this;
-
-      /* jshint unused:false */
-      Ember.$.post('api/users/forgot_password', { user: data }, function(results) {
-        var notify = Notify.alert(results.message, {
-          closeAfter: null // or set to null to disable auto-hiding
+        /* jshint unused:false */
+        Ember.$.post('api/users/forgot_password', { user: data }, function(results) {
+          router.transitionTo('login');
+        }).fail(function(jqxhr, textStatus, error ) {
+          if (jqxhr.status === 422) {
+            var errs = JSON.parse(jqxhr.responseText);
+            _this.set('errors.email', errs.errors.email);
+          }
         });
-        //notify.send('close');
-        router.transitionTo('sessions.new');
-      }).fail(function(jqxhr, textStatus, error ) {
-        if (jqxhr.status === 422) {
-          var errs = JSON.parse(jqxhr.responseText);
-          _self.set('errors.email', errs.errors.email);
-        }
+      }).catch(function() {
+        // validation failed
+        return;
       });
     }
   },
   validations: {
     email: {
-      presence: {if: 'canValidate'}
+      presence: {'if': 'canValidate'}
     }
   }
 });
