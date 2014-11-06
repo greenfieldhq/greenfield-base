@@ -29,7 +29,7 @@
 
 1. `npm install`
 1. `bower install`
-1. `ember serve ember serve --proxy http://localhost:3000`
+1. `ember serve` # NOTE: default proxy is set in the .ember-cli file
 1. in a broswer, navigate to `http://localhost:4200`
 1. check `rails/db/seeds.rb` for sample users to login with
 1. Finally, `git init` from the root /path/to/projectname
