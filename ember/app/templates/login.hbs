@@ -1,12 +1,11 @@
 <form {{action "authenticate" on="submit"}} role="form">
   <div class="controls form-group">
     {{input type="text" value=identification placeholder="Email Address" class="form-control"}}
-    <small class="below">{{errors.email}}</small>
+    <small class="below">{{loginErrorMessage}}</small>
   </div>
 
   <div class="controls form-group">
     {{input type="password" value=password placeholder="Password" class="form-control"}}
-    <small class="below">{{errors.password}}</small>
   </div>
 
   <div class="form-group">
