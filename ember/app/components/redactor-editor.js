@@ -15,7 +15,7 @@ var RedactorEditorComponent = Ember.Component.extend({
   },
 
   _updateElementValue: Ember.observer(function() {
-    var value = Ember.get(this, "body"),
+    var value = Ember.get(this, "body");
     var $el = this.$().context;
     if (typeof value === 'undefined') {
       return $el.innerHTML = '';
