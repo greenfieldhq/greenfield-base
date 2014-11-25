@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
-var RedactorEditorComponent = Ember.Component.extend({ 
+var RedactorEditorComponent = Ember.Component.extend({
   tagName: 'div',
+  minHeight: 400,
+
   init: function() {
     this._super();
 
@@ -11,10 +13,10 @@ var RedactorEditorComponent = Ember.Component.extend({
     this.on("cut", this, this._elementValueDidChange);
     this.on("input", this, this._elementValueDidChange);
   },
+
   _updateElementValue: Ember.observer(function() {
-    var $el, value;
-    value = Ember.get(this, "body");
-    $el = this.$().context;
+    var value = Ember.get(this, "body"),
+    var $el = this.$().context;
     if (typeof value === 'undefined') {
       return $el.innerHTML = '';
     }
@@ -22,14 +24,15 @@ var RedactorEditorComponent = Ember.Component.extend({
       return $el.innerHTML = value;
     }
   }, "body"),
+
   _elementValueDidChange: function() {
-    var $el;
-    $el = this.$().context;
+    var $el = this.$().context;
     return Ember.set(this, "body", $el.innerHTML);
   },
+
   didInsertElement: function() {
     this.$().redactor({
-      //air: true
+      minHeight: this.minHeight
     });
     this._updateElementValue();
   }
