@@ -16,7 +16,9 @@ export default Ember.ObjectController.extend(LoginControllerMixin, EmberValidati
       this.runValidations().then(function() {
         var router = _this.get('target');
         var data = _this.getProperties('email', 'password');
-        data['password_confirmation'] = _this.get('passwordConfirmation'); // Ember validations expects camel case, but Rails expects snake case
+        // Ember validations expects camel case, but Rails expects snake case
+        data['password_confirmation'] = _this.get('passwordConfirmation');
+        delete data['passwordConfirmation'];
 
         /* jshint unused:false */
         Ember.$.post('api/users', { user: data }, function(results) {

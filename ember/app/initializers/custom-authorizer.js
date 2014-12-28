@@ -6,7 +6,7 @@ var CustomAuthorizer = Base.extend({
     var userToken = this.get('session.user_token');
     var userId    = this.get('session.user_id');
     if (this.get('session.isAuthenticated') && !Ember.isEmpty(userToken) && !Ember.isEmpty(userId)) {
-      var authData = 'user_token="' + userToken + '", user_id="' + userId + '"';
+      var authData = 'token="' + userToken + '", user_id="' + userId + '"';
       jqXHR.setRequestHeader('Authorization', 'Token ' + authData);
     }
   }

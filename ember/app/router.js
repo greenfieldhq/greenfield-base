@@ -7,7 +7,6 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('logout');
   this.route('loading');
 
   this.resource('users', function() {
